@@ -1,5 +1,5 @@
 {
-  "name": "Cart-service",
+  "name": "cart-service",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -29,7 +29,7 @@
     "class-validator": "^0.14.2",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
-    "vtonomy": "file:../shared"
+    "vtonomy": "github:V-tonomy/vtonomy-ecommerce-common"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
