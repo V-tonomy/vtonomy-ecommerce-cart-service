@@ -14,7 +14,9 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
 @Module({
   imports: [
     CoreModule,
-    MongooseModule.forRoot(process.env.MONGODB_URL ?? 'mongodb://localhost:27017/ecommerce'),
+    MongooseModule.forRoot(
+      process.env.MONGODB_URL ?? 'mongodb://localhost:27017/ecommerce',
+    ),
     MongooseModule.forFeature([
       { name: 'Cart', schema: CartSchema },
       { name: 'CartItem', schema: CartItemSchema },
@@ -24,7 +26,9 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
         name: CLIENTS.Search_Client,
         transport: Transport.RMQ,
         options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672'],
+          urls: [
+            process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672',
+          ],
           queue: 'search_queue',
           queueOptions: {
             durable: false,
@@ -35,8 +39,10 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
         name: CLIENTS.Mail_Client,
         transport: Transport.RMQ,
         options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672'],
-          queue: 'mail_queue',
+          urls: [
+            process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672',
+          ],
+          queue: 'notification_queue',
           queueOptions: {
             durable: false,
           },
@@ -46,7 +52,9 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
         name: CLIENTS.Auth_Client,
         transport: Transport.RMQ,
         options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672'],
+          urls: [
+            process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672',
+          ],
           queue: 'auth_queue',
           queueOptions: {
             durable: false,
