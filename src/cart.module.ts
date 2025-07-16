@@ -31,7 +31,7 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
           ],
           queue: 'search_queue',
           queueOptions: {
-            durable: false,
+            durable: true,
           },
         },
       },
@@ -44,7 +44,7 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
           ],
           queue: 'notification_queue',
           queueOptions: {
-            durable: false,
+            durable: true,
           },
         },
       },
@@ -57,7 +57,7 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
           ],
           queue: 'auth_queue',
           queueOptions: {
-            durable: false,
+            durable: true,
           },
         },
       },

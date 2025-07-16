@@ -11,7 +11,7 @@ async function bootstrap() {
       urls: [process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672'],
       queue: 'cart_queue',
       queueOptions: {
-        durable: false,
+        durable: true,
       },
     },
   });
