@@ -1,4 +1,4 @@
-import { IRepository } from "vtonomy/dist/interface";
+import { IRepository } from 'vtonomy';
 
 export interface ICart {
   id: string;
@@ -19,8 +19,7 @@ export interface ICartItem {
 export interface ICartPersistant {}
 export interface ICartItemPersistant {}
 
-export interface ICartRepository
-  extends IRepository<ICart, ICartPersistant> {}
+export interface ICartRepository extends IRepository<ICart, ICartPersistant> {}
 
 export interface ICartItemRepository
   extends IRepository<ICartItem, ICartItemPersistant> {}

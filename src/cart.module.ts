@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CLIENTS, CoreModule } from 'vtonomy';
+import { CLIENTS } from 'vtonomy';
 import { CART_HANDLER } from './core';
 import { CartItemSchema, CartSchema } from './domain/cart.schema';
 import { CartItemRepository } from './infras/cart-item.repository';
@@ -13,7 +14,7 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
 
 @Module({
   imports: [
-    CoreModule,
+    CqrsModule,
     MongooseModule.forRoot(
       process.env.MONGODB_URL ?? 'mongodb://localhost:27017/ecommerce',
     ),
