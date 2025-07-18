@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CLIENTS } from 'vtonomy';
+import { RabbitmqModule } from 'vtonomy';
 import { CART_HANDLER } from './core';
 import { CartItemSchema, CartSchema } from './domain/cart.schema';
 import { CartItemRepository } from './infras/cart-item.repository';
@@ -15,53 +14,13 @@ export const ICartItemRepositoryToken = Symbol('ICartItemRepository');
 @Module({
   imports: [
     CqrsModule,
+    RabbitmqModule,
     MongooseModule.forRoot(
       process.env.MONGODB_URL ?? 'mongodb://localhost:27017/ecommerce',
     ),
     MongooseModule.forFeature([
       { name: 'Cart', schema: CartSchema },
       { name: 'CartItem', schema: CartItemSchema },
-    ]),
-    ClientsModule.register([
-      {
-        name: CLIENTS.Search_Client,
-        transport: Transport.RMQ,
-        options: {
-          urls: [
-            process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672',
-          ],
-          queue: 'search_queue',
-          queueOptions: {
-            durable: true,
-          },
-        },
-      },
-      {
-        name: CLIENTS.Mail_Client,
-        transport: Transport.RMQ,
-        options: {
-          urls: [
-            process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672',
-          ],
-          queue: 'notification_queue',
-          queueOptions: {
-            durable: true,
-          },
-        },
-      },
-      {
-        name: CLIENTS.Auth_Client,
-        transport: Transport.RMQ,
-        options: {
-          urls: [
-            process.env.RABBITMQ_URL ?? 'amqp://vtonomy:123456@localhost:5672',
-          ],
-          queue: 'auth_queue',
-          queueOptions: {
-            durable: true,
-          },
-        },
-      },
     ]),
   ],
   controllers: [CartController],
